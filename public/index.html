@@ -7,6 +7,13 @@
     <div ng-controller="homeController as home">
       {{home.message}} {{home.user.name}}.
     </div>
+    <div ng-controller="todoController as todo">
+      <ol class="list-unstyled">
+        <li ng-repeat="item in todo.list">
+          {{item}}
+        </li>
+      </ol>
+    </div>
     <script src="https://code.angularjs.org/1.4.9/angular.min.js"></script>
     <script src="app.js"></script>
   </body>

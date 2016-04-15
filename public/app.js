@@ -13,3 +13,15 @@ function home($http) {
     vm.user = info.data;
   })
 }
+
+app.controller("todoController", todo);
+
+app.$inject = [$http];
+
+function todo($http) {
+  vm = this;
+  var todos = $http.get("http://localhost:1337/todos/Andrew");
+  todos.then(function(todo) {
+    vm.list = todo.data
+  })
+}

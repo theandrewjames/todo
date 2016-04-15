@@ -11,4 +11,13 @@ app.get("/user", function(req, res) {
   res.json(user)
 })
 
+app.get("/todos/:user", function(req, res) {
+  if(req.params.user === "Andrew") {
+    var todos = ["1","2","3","4"];
+    res.send(todos);
+  } else {
+    res.sendStatus(404);
+  }
+})
+
 app.listen(1337);
