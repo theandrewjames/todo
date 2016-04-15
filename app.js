@@ -1,8 +1,14 @@
-var app = angular.module("todo", []);
+var express = require("express");
+var app = express();
 
-app.controller("homeController", home);
+app.use(express.static("./public"));
 
-function home() {
-  var vm = this;
-  vm.message = "Welcome home";
-}
+app.get("/user", function(req, res) {
+  var user = {
+    name: "Andrew",
+    location: "California"
+  }
+  res.json(user)
+})
+
+app.listen(1337);
