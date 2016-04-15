@@ -13,7 +13,7 @@ app.get("/user", function(req, res) {
 
 app.get("/todos/:user", function(req, res) {
   if(req.params.user === "Andrew") {
-    var todos = ["1","2","3","4"];
+    var todos = ["Exercise 1","Exercise 2","Exercise 3","Exercise 4"];
     res.send(todos);
   } else {
     res.sendStatus(404);
