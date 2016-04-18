@@ -32,17 +32,22 @@ function todo($http) {
   }
 
   vm.finished = function(item) {
-    var position = vm.list.indexOf(item);
-    vm.list.splice(position, 1)
+    var deleteThis = {};
+    deleteThis.thing = item;
+    var removed = $http.delete("http://localhost:1337/todos/delete/", JSON.stringify(deleteThis));
+    removed.then(function() {
+      getTodos();
+    })
   }
 
   vm.add = function(item) {
     var todo = {};
     todo.thing = item;
 
-    var added = $http.post("http://localhost:1337/todos/", todo);
+    var added = $http.post("http://localhost:1337/todos/add/", todo);
     added.then(function() {
         getTodos();
     })
   }
+
 }

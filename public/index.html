@@ -14,8 +14,8 @@
         <span ng-show="todo.list.length === 0">Nothing to do</span>
         <ol class="list-unstyled">
           <li ng-repeat="item in todo.list">
-            <input  ng-click="finished = !finished; todo.finished(item)" type="checkbox">
-            <span ng-class="{'text-muted': finished}" ng-show="!finished">
+            <input  ng-click="todo.finished(todo.item)" type="checkbox">
+            <span ng-model="todo.item">
               {{item.thing}}
             </span>
           </li>

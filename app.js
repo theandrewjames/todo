@@ -31,7 +31,7 @@ app.get("/todos/:user", function(req, res) {
   })
 })
 
-app.post("/todos/", jsonParser,  function(req, res) {
+app.post("/todos/add/", jsonParser,  function(req, res) {
   myClient.connect(url, function(error, database) {
     if(error) {throw error}
     else {
@@ -42,6 +42,22 @@ app.post("/todos/", jsonParser,  function(req, res) {
         res.sendStatus(200);
         database.close();
       })
+    }
+  })
+})
+
+app.delete("/todos/delete/", function(req, res) {
+  myClient.connect(url, function(error, database) {
+    if(error) {throw error}
+    else {
+      var exercises = database.collection("exercises");
+      exercises.remove(
+        {thing: req.body.thing}
+        , function(error, results) {
+          res.sendStatus(200);
+          database.close();
+        }
+      )
     }
   })
 })
