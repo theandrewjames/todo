@@ -1,7 +1,6 @@
 var app = angular.module("todo", []);
 
 app.controller("homeController", home);
-
 app.$inject = ["$http"];
 
 function home($http) {
@@ -15,7 +14,6 @@ function home($http) {
 }
 
 app.controller("todoController", todo);
-
 app.$inject = ["$http"];
 
 function todo($http) {
