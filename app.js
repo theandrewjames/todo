@@ -20,7 +20,7 @@ app.get("/user", function(req, res) {
 
 app.get("/todos/:user", function(req, res) {
   myClient.connect(url, function(error, database) {
-    if(error) {throw error}
+    if(error) {console.log(error)}
     else {
       var exercises = database.collection("exercises");
       exercises.find({}).toArray(function(error, docs) {
@@ -33,7 +33,7 @@ app.get("/todos/:user", function(req, res) {
 
 app.post("/todos/add/", jsonParser,  function(req, res) {
   myClient.connect(url, function(error, database) {
-    if(error) {throw error}
+    if(error) {console.log(error)}
     else {
       var exercises = database.collection("exercises");
       exercises.insert(
@@ -46,13 +46,13 @@ app.post("/todos/add/", jsonParser,  function(req, res) {
   })
 })
 
-app.delete("/todos/delete/", function(req, res) {
+app.delete("/todos/delete/:thing", function(req, res) {
   myClient.connect(url, function(error, database) {
-    if(error) {throw error}
+    if(error) {console.log(error)}
     else {
       var exercises = database.collection("exercises");
       exercises.remove(
-        {thing: req.body.thing}
+        {thing: req.params.thing}
         , function(error, results) {
           res.sendStatus(200);
           database.close();
@@ -61,5 +61,6 @@ app.delete("/todos/delete/", function(req, res) {
     }
   })
 })
+
 
 app.listen(1337);

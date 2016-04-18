@@ -32,9 +32,8 @@ function todo($http) {
   }
 
   vm.finished = function(item) {
-    var deleteThis = {};
-    deleteThis.thing = item;
-    var removed = $http.delete("http://localhost:1337/todos/delete/", JSON.stringify(deleteThis));
+    var finishedItem = item.thing;
+    var removed = $http.delete("http://localhost:1337/todos/delete/" + finishedItem );
     removed.then(function() {
       getTodos();
     })
