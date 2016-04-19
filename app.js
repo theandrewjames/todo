@@ -37,7 +37,7 @@ app.post("/todos/add/", jsonParser,  function(req, res) {
     else {
       var exercises = database.collection("exercises");
       exercises.insert(
-        {thing: req.body.thing}
+        {thing: req.body.thing, date: req.body.date}
       , function(error, results) {
         res.sendStatus(200);
         database.close();
