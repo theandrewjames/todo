@@ -26,8 +26,8 @@ function todo($http) {
 
   vm.add = function(item) {
     var todo = {};
-    todo.thing = item;
-
+    todo.thing = item[0];
+    todo.date = item[1];
     var added = $http.post("http://localhost:1337/todos/add/", todo);
     added.then(function() {
         getTodos();

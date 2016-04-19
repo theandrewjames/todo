@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+  <body ng-app="todo">
+    <div class="container">
+      <div ng-controller="todoController as todo">
+        <span ng-show="todo.list.length !== 0">Items: {{todo.list.length}}</span>
+        <span ng-show="todo.list.length === 0">Nothing to do</span>
+        <ol class="list-unstyled">
+          <li ng-repeat="item in todo.list">
+            <input  ng-click="todo.finished(item)" type="checkbox">
+            <span ng-model="item">
+              {{item.thing}} ~ Due: {{item.date | date: "shortDate"}}
+            </span>
+          </li>
+          <form>
+            <input type="text" size="20" ng-model="todo.item" placeholder="Thing to do">
+            <input type="text" size="15" ng-model="todo.date" placeholder="MM/DD/YYYY">
+            <button class="btn btn-primary" type="button" ng-click="todo.add([todo.item, todo.date])">Add</button>
+          </form>
+        </ol>
+      </div>
+    </div>
+  </body>
+</html>

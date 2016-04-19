@@ -4,30 +4,23 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
   </head>
-  <body ng-app="todo">
+  <body ng-app="todo" ng-init="start = true">
     <div class="container">
       <div ng-controller="homeController as home">
-        <h1>{{home.message}} {{home.user.name}}.</h1>
-        <greeting></greeting>
+        <span>Welcome to the todo page</span>
+        <a class="btn btn-primary" ng-click="start = !start" type="button" href="#/profile">Show Profile</a>
       </div>
+      <br>
       <div ng-controller="todoController as todo">
-        <span ng-show="todo.list.length !== 0">Items: {{todo.list.length}}</span>
-        <span ng-show="todo.list.length === 0">Nothing to do</span>
-        <ol class="list-unstyled">
-          <li ng-repeat="item in todo.list">
-            <input  ng-click="todo.finished(item)" type="checkbox">
-            <span ng-model="item">
-              {{item.thing}}
-            </span>
-          </li>
-          <form>
-            <input type="text" size="20" ng-model="todo.item">
-            <button class="btn btn-primary" type="button" ng-click="todo.add(todo.item)">Add</button>
-          </form>
-        </ol>
+        <div ng-show="start">
+          <span>Click to see your todo list</span>
+          <a class="btn btn-primary" ng-click="start = !start" type="button" href="#/todo">Show Todos</a>
+        </div>
+        <div ng-view></div>
       </div>
     </div>
     <script src="https://code.angularjs.org/1.4.9/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.9/angular-route.js"></script>
     <script src="app.js"></script>
     <script src="add.directive.js"></script>
     <script src="todo.controller.js"></script>
