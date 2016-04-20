@@ -7,10 +7,14 @@ function todo($http, userService) {
   var vm = this;
   activate();
   function activate() {
-    getTodos();
+    var current = userService.getUser();
+    current.then(function(info) {
+      vm.current = info.data.name;
+    })
+    getTodos(vm.current);
   }
-  function getTodos() {
-    var todos = $http.get("http://localhost:1337/todos/Andrew");
+  function getTodos(user) {
+    var todos = $http.get("http://localhost:1337/todos/" + user);
     todos.then(function(todo) {
       vm.list = todo.data;
     })
@@ -28,14 +32,11 @@ function todo($http, userService) {
     var todo = {};
     todo.thing = item[0];
     todo.date = item[1];
+    todo.user = vm.current;
     var added = $http.post("http://localhost:1337/todos/add/", todo);
     added.then(function() {
         getTodos();
     })
   }
 
-  var current = userService.getUser();
-  current.then(function(info) {
-    vm.current = info.data;
-  })
 }
