@@ -3,20 +3,27 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link href="default.css" rel="stylesheet">
   </head>
   <body ng-app="todo" ng-init="start = true">
     <div class="container">
-      <div ng-controller="homeController as home">
-        <span>Welcome to the todo page</span>
-        <a class="btn btn-primary" ng-click="start = !start" type="button" href="#/profile">Show Profile</a>
-      </div>
-      <br>
-      <div ng-controller="todoController as todo">
-        <div ng-show="start">
-          <span>Click to see your todo list</span>
-          <a class="btn btn-primary" ng-click="start = !start" type="button" href="#/todo">Show Todos</a>
+      <div class="col-md-6 col-md-offset-3">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div ng-controller="homeController as home">
+              <h2>Todo App</h2>
+              <br>
+              <a class="btn btn-primary" ng-click="start = !start" type="button" id="profile" href="#/profile">Show Profile</a>
+            </div>
+            <br>
+            <div ng-controller="todoController as todo">
+              <div ng-show="start">
+                <a class="btn btn-primary" ng-click="start = !start" type="button" id="todo" href="#/todo">Show Todos</a>
+              </div>
+            </div>
+            <div ng-view></div>
+          </div>
         </div>
-        <div ng-view></div>
       </div>
     </div>
     <script src="https://code.angularjs.org/1.4.9/angular.min.js"></script>
