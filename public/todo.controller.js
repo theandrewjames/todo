@@ -1,9 +1,9 @@
 var app = angular.module("todo");
 
 app.controller("todoController", todo);
-app.$inject = ["$http"];
+app.$inject = ["$http", "userService"];
 
-function todo($http) {
+function todo($http, userService) {
   var vm = this;
   activate();
   function activate() {
@@ -34,4 +34,8 @@ function todo($http) {
     })
   }
 
+  var current = userService.getUser();
+  current.then(function(info) {
+    vm.current = info.data;
+  })
 }
