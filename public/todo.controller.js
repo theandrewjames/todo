@@ -10,8 +10,8 @@ function todo($http, userService) {
     var current = userService.getUser();
     current.then(function(info) {
       vm.current = info.data.name;
+      getTodos(vm.current)
     })
-    getTodos(vm.current);
   }
   function getTodos(user) {
     var todos = $http.get("http://localhost:1337/todos/" + user);
