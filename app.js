@@ -23,7 +23,7 @@ app.get("/todos/:user", function(req, res) {
     if(error) {console.log(error)}
     else {
       var exercises = database.collection("exercises");
-      exercises.find({}).toArray(function(error, docs) {
+      exercises.find({user: req.params.user}).toArray(function(error, docs) {
         res.json(docs);
         database.close();
       })
@@ -37,7 +37,7 @@ app.post("/todos/add/", jsonParser,  function(req, res) {
     else {
       var exercises = database.collection("exercises");
       exercises.insert(
-        {thing: req.body.thing, date: req.body.date}
+        {thing: req.body.thing, date: req.body.date, user: req.body.user}
       , function(error, results) {
         res.sendStatus(200);
         database.close();

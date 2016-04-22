@@ -14,10 +14,10 @@
               {{item.thing}} ~ Due: {{item.date | date: "fullDate"}}
             </span>
           </li>
-          <form>
-            <input type="text" size="20" ng-model="todo.item" placeholder="Thing to do">
-            <input type="date" size="15" ng-model="todo.date" placeholder="MM/DD/YYYY">
-            <button class="btn btn-primary" type="button" ng-click="todo.add([todo.item, todo.date])">Add</button>
+          <form id="todoForm">
+            <input type="text" size="20" name="thingTodo" ng-model="todo.item" id="todoInput" placeholder="Thing to do">
+            <input type="date" size="15" ng-model="todo.date" name="todoDate" id="todoDate" placeholder="MM/DD/YYYY">
+            <button class="btn btn-primary" id="addTodo" type="button" ng-click="todo.add([todo.item, todo.date])">Add</button>
           </form>
         </ol>
       </div>

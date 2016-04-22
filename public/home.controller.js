@@ -11,8 +11,8 @@ function home($http, userService) {
   user.then(function(info) {
     vm.user = info.data;
   })
-  var current = userService.getUser();
-  current.then(function(info) {
-    vm.current = info.data;
+  var currentUser = userService.getUser();
+  currentUser.then(function(info) {
+    vm.currentUser = info.data.name;
   })
 }
