@@ -63,6 +63,10 @@ app.delete("/todos/delete/:thing", function(req, res) {
 })
 
 if(!require.main.loaded) {
-  var server = app.listen(1337)
+  var port = process.env.PORT || 1337;
+  app.listen(port, function() {
+    console.log("Listening on port " + port);
+  })
 }
+
 module.exports = app;

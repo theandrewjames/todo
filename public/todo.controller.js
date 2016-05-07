@@ -35,7 +35,7 @@ function todo($http, userService) {
     todo.user = vm.current;
     var added = $http.post("http://localhost:1337/todos/add/", todo);
     added.then(function() {
-        getTodos();
+        getTodos(todo.user);
     })
   }
 
